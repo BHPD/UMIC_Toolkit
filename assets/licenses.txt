@@ -1,7 +1,7 @@
-Developed by B.H. Peter Duinkerken
+Developed by Peter Duinkerken
 Copyright 2026
 
-Microsoft Copilot was used the aid in resolving bugs.
+Microsoft Copilot was used to aid in resolving bugs.
 
 The following packages are recognized using the mentioned licences:
 
