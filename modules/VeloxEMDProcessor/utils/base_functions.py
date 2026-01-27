@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os, math, gc, traceback
 
 import hyperspy.api as hs

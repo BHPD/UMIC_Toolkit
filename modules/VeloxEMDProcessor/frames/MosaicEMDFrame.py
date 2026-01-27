@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import customtkinter
-from frames.SingleNormalFrame import SingleNormalFrame
-from frames.SingleBatchFrame import SingleBatchFrame
+from .MosaicNormalFrame import MosaicNormalFrame
+from .MosaicBatchFrame import MosaicBatchFrame
 
-class SingleEMDFrame(customtkinter.CTkFrame):
+class MosaicEMDFrame(customtkinter.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
 
@@ -16,9 +16,9 @@ class SingleEMDFrame(customtkinter.CTkFrame):
         self.NormalTab = self.tabs.add("Normal mode")
         self.BatchTab = self.tabs.add("Batch mode")
 
-        self.NormalFrame = SingleNormalFrame(self.NormalTab)
+        self.NormalFrame = MosaicNormalFrame(self.NormalTab)
         self.NormalFrame.pack(fill="both", expand=True)
-        self.BatchFrame = SingleBatchFrame(self.BatchTab)
+        self.BatchFrame = MosaicBatchFrame(self.BatchTab)
         self.BatchFrame.pack(fill="both", expand=True)
     
     def reset(self): 

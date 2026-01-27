@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import customtkinter
-from frames.cEMDFrame import cEMDFrame
-from frames.stitchFrame import stitchFrame
+from .cEMDFrame import cEMDFrame
+from .stitchFrame import stitchFrame
 
 class MainTabs(customtkinter.CTkTabview):
     def __init__(self, master):

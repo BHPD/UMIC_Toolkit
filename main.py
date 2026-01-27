@@ -1,27 +1,26 @@
-# -*- coding: utf-8 -*-
 import customtkinter
-from frames.MainTabs import MainTabs
+from modules.VeloxEMDProcessor.VeloxEMDProcessor import VeloxEMDProcessor
 from assets.load_licenses import license_window
 
 customtkinter.set_appearance_mode("dark") 
 customtkinter.set_default_color_theme("dark-blue")
 
-class App(customtkinter.CTk):
+class UMICToolkit(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-        
-        # Standard GUI parameters
-        self.title('Velox EMD Processor v0.1')
-        self.geometry("1280x720")
-        
-        # Grid geometry of the main app
-        self.grid_rowconfigure(0, weight=1)
-        self.grid_columnconfigure(0, weight=1)
+        self.title("UMIC Toolkit v0.1.0")
+        self.geometry("320x360")
 
-        # Main tabs
-        self.tabs = MainTabs(self)
-        self.tabs.pack(fill="both", expand=True)
+        self.content = customtkinter.CTkFrame(self)
+        self.content.pack(fill="both", expand=True, padx=20, pady=20)
 
+        self.vEMDProcessor_btn = customtkinter.CTkButton(self.content,
+                                                         text = "Velox EMD Processor",
+                                                         command = self.open_vEMDProcessor)
+        self.vEMDProcessor_btn.grid(row=0, column=0,  sticky='nsew', pady=5, padx =5)
+
+        self.content.grid_columnconfigure('all', weight=1) 
+        self.content.grid_rowconfigure('all', weight=1)  
         # Bottom bar containing the info and mode-switch
         self.bottom_bar = customtkinter.CTkFrame(self)
         self.bottom_bar.pack(side="bottom", fill="x", padx=10, pady=10)
@@ -52,6 +51,10 @@ class App(customtkinter.CTk):
             customtkinter.set_appearance_mode("light")
             self.theme_switch.configure(text="Light mode")
 
+
+    def open_vEMDProcessor(self):
+        vEMD_window = VeloxEMDProcessor(self)
+
 if __name__ == "__main__":
-    app = App()
+    app = UMICToolkit()
     app.mainloop()

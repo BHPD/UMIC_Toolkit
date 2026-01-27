@@ -26,7 +26,7 @@ exe = EXE(
     pyz,
     a.scripts,
     [],
-    name='Velox EMD Processor v0.1',
+    name='UMIC Toolkit v0.1.0',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -41,5 +41,5 @@ coll = COLLECT(
     a.datas,
     strip=False,
     upx=True,
-    name='Velox EMD Processor v0.1',
+    name='UMIC Toolkit v0.1.0',
 )

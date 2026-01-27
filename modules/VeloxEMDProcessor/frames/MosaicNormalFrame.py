@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import customtkinter, threading, os, gc, time
 from tkinter import filedialog
-import utils.base_functions as bf
+from ..utils import base_functions as bf
 
 class MosaicNormalFrame(customtkinter.CTkFrame):
     def __init__(self, master):
