@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jan  7 16:52:29 2026
-
-@author: UMCG
-"""
 import os, sys, customtkinter
 
 def license_path(relative_path):

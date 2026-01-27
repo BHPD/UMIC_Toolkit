@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import customtkinter
-from frames.cEMDSidebar import cEMDSidebar 
-from frames.SingleEMDFrame import SingleEMDFrame 
-from frames.MosaicEMDFrame import MosaicEMDFrame
+from .cEMDSidebar import cEMDSidebar 
+from .SingleEMDFrame import SingleEMDFrame 
+from .MosaicEMDFrame import MosaicEMDFrame
 
 class cEMDFrame(customtkinter.CTkFrame):
     def __init__(self, master):
