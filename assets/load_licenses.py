@@ -1,14 +1,12 @@
 import os, sys, customtkinter
 
-def license_path(relative_path):
+def file_path(relative_path):
     # for PyInstaller
     if hasattr(sys, 'frozen'):
         base_path = sys._MEIPASS
     # for development
     else:
         base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
     return os.path.join(base_path, "assets", relative_path)
 
 def license_window(self):
@@ -22,7 +20,7 @@ def license_window(self):
     win.grab_set()
 
     # Load license text
-    license_file = license_path("licenses.txt")
+    license_file = file_path("licenses.txt")
 
     try:
         with open(license_file, "r", encoding="utf-8") as f:

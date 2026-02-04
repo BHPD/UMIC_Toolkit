@@ -6,6 +6,3 @@ class MosaicBatchFrame(customtkinter.CTkFrame):
         super().__init__(master)
         
         customtkinter.CTkLabel(self, text='Batch mode!').pack()
-    
-    def reset(self):
-        pass
