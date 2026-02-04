@@ -1,5 +1,5 @@
-import customtkinter
-from modules.VeloxEMDProcessor.VeloxEMDProcessor import VeloxEMDProcessor
+import os,  sys, customtkinter
+from modules.VeloxEMDConverter.VeloxEMDConverter import VeloxEMDConverter
 from assets.load_licenses import license_window
 
 customtkinter.set_appearance_mode("dark") 
@@ -8,19 +8,20 @@ customtkinter.set_default_color_theme("dark-blue")
 class UMICToolkit(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-        self.title("UMIC Toolkit v0.1.0")
+        self.title("UMIC Toolkit v0.1.1")
         self.geometry("320x360")
 
         self.content = customtkinter.CTkFrame(self)
         self.content.pack(fill="both", expand=True, padx=20, pady=20)
 
-        self.vEMDProcessor_btn = customtkinter.CTkButton(self.content,
-                                                         text = "Velox EMD Processor",
-                                                         command = self.open_vEMDProcessor)
-        self.vEMDProcessor_btn.grid(row=0, column=0,  sticky='nsew', pady=5, padx =5)
+        self.vEMDConverter_btn = customtkinter.CTkButton(self.content,
+                                                         text = "Velox EMD Converter",
+                                                         command = self.open_vEMDConverter)
+        self.vEMDConverter_btn.grid(row=0, column=0,  sticky='nsew', pady=5, padx =5)
 
         self.content.grid_columnconfigure('all', weight=1) 
-        self.content.grid_rowconfigure('all', weight=1)  
+        self.content.grid_rowconfigure('all', weight=1)
+
         # Bottom bar containing the info and mode-switch
         self.bottom_bar = customtkinter.CTkFrame(self)
         self.bottom_bar.pack(side="bottom", fill="x", padx=10, pady=10)
@@ -50,10 +51,9 @@ class UMICToolkit(customtkinter.CTk):
         else:
             customtkinter.set_appearance_mode("light")
             self.theme_switch.configure(text="Light mode")
-
-
-    def open_vEMDProcessor(self):
-        vEMD_window = VeloxEMDProcessor(self)
+            
+    def open_vEMDConverter(self):
+        vEMD_window = VeloxEMDConverter(self)
 
 if __name__ == "__main__":
     app = UMICToolkit()

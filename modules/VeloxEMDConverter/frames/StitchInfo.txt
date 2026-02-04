@@ -1,0 +1,42 @@
+# Suggested folder structure
+{EM number}/                                    # Root folder of the project                            
+├── TIFFs/                                      # Export folder used during .emd -> .tiff conversion.
+│   └── Element XX/                             # Folders for individual elements
+│       └── Tile_XX.tiffs                       # Individual .tiff tiles.
+├── Exports/                                    # Export folder for TrakEM2
+│   └── Element XX.tiffs                        # Stitched .tiffs
+├── Tiles/                                      # Tile folder for TrakEM2
+│   └── Copies of Tile_XX.tiffs                 # Copies of individual .tiff tiles.
+└── {EM number}.xml                             # TrakEM2 .xml project.
+
+# Stitching HAADF
+1. Copy the exported HAADF files to an empty folder (e.g. 'Tiles', see above)
+1. In FIJI: File -> New -> TrakEM2 (blank)
+    a. Select folder (e.g. '{EM number}', see above)
+2. Right-click TrakEM2 canvas: Import -> import sequence as grid...
+    a. Select the first HAADF to be stitched.
+    b. Input correct number of rows and columns & check ONLY 'montage with phase correlation' -> OK.
+    e. Press OK (optional: adjust overlap if a different overlap is used).
+5. (optional if stitching was unsatisfactory) Right-click TrakEM2 canvas: align -> montage all images in this layer.
+    Note: this will use another approach towards aligning the images.
+    a. Press OK 4 times.
+    b. Check 'tiles are roughly in place' -> OK.
+    c. If stitching still unsuccesful, adjust parameters in the windows at 4a.
+    d. Right-click TrakEM2 canvas: Display -> Autoresize canvas/LayerSet.
+        Note: minimizes black area (in x and y) around the stitched dataset.
+6. Right-click TrakEM2 canvas: Project -> Save as...
+    a. Save as .xml file (e.g. in '{EM number}' folder as {EM number}.xml, see above.).
+
+# Exporting HAADF
+7. Right-click TrakEM2 canvas: Export -> Make flat image...
+    a. Check 'Best quality' -> OK.
+8. In FIJI select the image and go to: File -> Save As -> Tiff... (shortcut: CTRL + S).
+    a. Save as {element name}.tiff (e.g. in 'Exports' folder, see above).
+
+# Exporting other elements
+9. Overwrite the .tiff copies with the, to be stitched and exported, element tiffs.
+    Note: replace all, make sure this is the tile folder for TrakEM2 (e.g. 'Tiles', see above)
+10. Right-click TrakEM2 canvas: Project -> Flush image cache
+11. Right-click TrakEM2 canvas: Project -> Regenerate all mipmaps
+12. Repeat steps 8 and 9 to export this stitched image.
+13. For other elements, repeat steps 10, 11, 12 and 13.

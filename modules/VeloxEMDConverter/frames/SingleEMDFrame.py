@@ -23,5 +23,3 @@ class SingleEMDFrame(customtkinter.CTkFrame):
     
     def reset(self): 
         self.tabs.set("Normal mode")
-        self.NormalFrame.reset()
-        self.BatchFrame.reset()

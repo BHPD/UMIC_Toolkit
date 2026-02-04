@@ -26,7 +26,7 @@ exe = EXE(
     pyz,
     a.scripts,
     [],
-    name='UMIC Toolkit v0.1.0',
+    name='UMIC Toolkit v0.1.1',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -41,5 +41,5 @@ coll = COLLECT(
     a.datas,
     strip=False,
     upx=True,
-    name='UMIC Toolkit v0.1.0',
+    name='UMIC Toolkit v0.1.1',
 )
