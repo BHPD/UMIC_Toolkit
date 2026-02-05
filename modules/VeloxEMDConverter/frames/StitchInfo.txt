@@ -16,7 +16,7 @@
 2. Right-click TrakEM2 canvas: Import -> import sequence as grid...
     a. Select the first HAADF to be stitched.
     b. Input correct number of rows and columns & check ONLY 'montage with phase correlation' -> OK.
-    e. Press OK (optional: adjust overlap if a different overlap is used).
+    c. Press OK (optional: adjust overlap if a different overlap is used).
 5. (optional if stitching was unsatisfactory) Right-click TrakEM2 canvas: align -> montage all images in this layer.
     Note: this will use another approach towards aligning the images.
     a. Press OK 4 times.

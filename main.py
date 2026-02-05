@@ -8,7 +8,7 @@ customtkinter.set_default_color_theme("dark-blue")
 class UMICToolkit(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-        self.title("UMIC Toolkit v0.1.1")
+        self.title("UMIC Toolkit v0.1.2")
         self.geometry("320x360")
 
         self.content = customtkinter.CTkFrame(self)
@@ -20,7 +20,7 @@ class UMICToolkit(customtkinter.CTk):
         self.vEMDConverter_btn.grid(row=0, column=0,  sticky='nsew', pady=5, padx =5)
 
         self.content.grid_columnconfigure('all', weight=1) 
-        self.content.grid_rowconfigure('all', weight=1)
+        self.content.grid_rowconfigure('all', weight=0)
 
         # Bottom bar containing the info and mode-switch
         self.bottom_bar = customtkinter.CTkFrame(self)
