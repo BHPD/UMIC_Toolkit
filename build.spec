@@ -26,7 +26,7 @@ exe = EXE(
     pyz,
     a.scripts,
     [],
-    name='UMIC Toolkit v0.1.1',
+    name='UMIC Toolkit v0.1.2',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

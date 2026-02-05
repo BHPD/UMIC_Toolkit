@@ -8,7 +8,7 @@ customtkinter.set_default_color_theme("dark-blue")
 class UMICToolkit(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-        self.title("UMIC Toolkit v0.1.1")
+        self.title("UMIC Toolkit v0.1.2")
         self.geometry("320x360")
 
         self.content = customtkinter.CTkFrame(self)

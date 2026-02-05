@@ -94,7 +94,7 @@ class MosaicNormalFrame(customtkinter.CTkFrame):
         # Row 6, HAADF normalization option menu
         self.haadf_norm=customtkinter.CTkOptionMenu(
             self,
-            values=['Local HAADF normalization', 'Global HAADF normalization'],
+            values=['Global HAADF normalization', 'Local HAADF normalization'],
             state = 'disabled')
         self.haadf_norm.grid(row=6, column =2, columnspan=2, sticky='ew', pady =5, padx=5)
 
