@@ -20,7 +20,7 @@ class UMICToolkit(customtkinter.CTk):
         self.vEMDConverter_btn.grid(row=0, column=0,  sticky='nsew', pady=5, padx =5)
 
         self.content.grid_columnconfigure('all', weight=1) 
-        self.content.grid_rowconfigure('all', weight=1)
+        self.content.grid_rowconfigure('all', weight=0)
 
         # Bottom bar containing the info and mode-switch
         self.bottom_bar = customtkinter.CTkFrame(self)

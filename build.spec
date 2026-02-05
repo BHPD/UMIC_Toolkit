@@ -12,7 +12,9 @@ a = Analysis(
         ('C:/Users/UMCG/anaconda3/envs/umic_toolkit_build/Lib/site-packages/rsciio', 'rsciio'),
         ('C:/Users/UMCG/anaconda3/envs/umic_toolkit_build/Lib/site-packages/box', 'box'),
     ],
-    hiddenimports=[],
+    hiddenimports=[
+        'xsdata_pydantic_basemodel.hooks',
+        'xsdata_pydantic_basemodel.hooks.class_type'],
     hookspath=['hooks'],
     hooksconfig={},
     runtime_hooks=[],
@@ -41,5 +43,5 @@ coll = COLLECT(
     a.datas,
     strip=False,
     upx=True,
-    name='UMIC Toolkit v0.1.1',
+    name='UMIC Toolkit v0.1.2',
 )
