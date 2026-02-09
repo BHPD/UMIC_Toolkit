@@ -8,7 +8,7 @@ a = Analysis(
     binaries=[],
     datas=[
         ('assets/licenses.txt', 'assets'),
-        ('modules/VeloxEMDConverter/frames/StitchInfo.txt', 'assets')
+        ('modules/VeloxEMDConverter/frames/StitchInfo.txt', 'assets'),
         ('C:/Users/UMCG/anaconda3/envs/umic_toolkit_build/Lib/site-packages/hyperspy', 'hyperspy'),
         ('C:/Users/UMCG/anaconda3/envs/umic_toolkit_build/Lib/site-packages/rsciio', 'rsciio'),
         ('C:/Users/UMCG/anaconda3/envs/umic_toolkit_build/Lib/site-packages/box', 'box'),
