@@ -7,7 +7,7 @@ class StitchFrame(customtkinter.CTkFrame):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
 
-        StitchInfoPath = self.file_path("StitchInfo.txt")
+        StitchInfoPath = self.file_path(os.path.join("assets", "StitchInfo.txt"))
         try:
             with open(StitchInfoPath, "r", encoding="utf-8") as f:
                 info_text = f.read()
