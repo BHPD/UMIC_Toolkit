@@ -220,11 +220,12 @@ def tiffFolderToOmeTiff(master, folder, export_path, name, metadata_tiff):
         master.popup.configure(text=f'Processing {channels[c]}\n[Loading]...')
         ds_imgs = []
         img = tf.imread(os.path.join(folder, file))
+        img_dtype = img.dtype
         levels = int(math.log((np.max(img.shape) / 256), 2) +1)
         master.popup.configure(text=f'Processing {channels[c]}\n[Generating pyramid]...')
         ds_img_gen = pyramid_gaussian(img, levels, preserve_range= True)
         for ds_img in range(levels):
-            ds_imgs.append(np.asarray(next(ds_img_gen), dtype = 'uint8'))
+            ds_imgs.append(np.asarray(next(ds_img_gen), dtype = img_dtype))
         images.append(ds_imgs)
         del img, ds_imgs, ds_img
         gc.collect()
@@ -237,7 +238,7 @@ def tiffFolderToOmeTiff(master, folder, export_path, name, metadata_tiff):
                                               md['BinaryResult']['PixelUnitX'])
         metadata = {
             "axes": "CYX",
-            "SignificantBits": 8,
+            "SignificantBits": img_dtype.itemsize *8,
             "PhysicalSizeX": pixel_size_um,
             "PhysicalSizeXUnit": 'µm',
             "PhysicalSizeY": pixel_size_um,

@@ -7,7 +7,13 @@ Z. Patch
 ### v0.2.0 (future plans)
 UMIC Toolkit with a fully functional VeloxEMDConverter module.
 
-#### v0.1.2 (current)
+#### v0.1.3 (current)
+Minor updates:
+1. [NEW]        WIP: Add batch-conversion for single and mosaic acquisitions where normalization is done globally for the elemental maps.
+Bug fixes:
+1. [FIX]        Single-tile OME-TIFF exports now determines and preserves input dtype.
+
+#### v0.1.2
 Minor updates:
 1. [CHANGE]     Default HAADF normalization to global.
 2. [CHANGE]     Indicate category in changelog.
@@ -15,7 +21,7 @@ Minor updates:
 4. [CHANGE]     Updated README.md
 
 Bug fixes:
-4. [FIX]        Fixed crashing .exe.
+5. [FIX]        Fixed crashing .exe.
 
 #### v0.1.1
 Minor updates:
