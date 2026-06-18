@@ -47,7 +47,7 @@ def flattenMD(md, parent_key='', sep='.'):
             items.append((new_key, v))
     return dict(items)
 
-def processSingleNormal(master, file, export_path, invert, norm, norm_min, norm_max, blur, blur_sigma, dtype):
+def processSingleSingle(master, file, export_path, invert, norm, norm_min, norm_max, blur, blur_sigma, dtype, start_time):
     # Initialize arguments
     master.popup.configure(text='Initializing...')
     norm_min = 0.5 if norm_min == "" else float(norm_min)
@@ -99,9 +99,9 @@ def processSingleNormal(master, file, export_path, invert, norm, norm_min, norm_
     except Exception as e:
         print('Error:', e)
         traceback.print_exc()   
-    master.popup.configure(text='Done!')
+    master.popup.configure(text=f'Completed in {(time.time() - start_time):.2f} seconds!')
         
-def processMosaicNormal(master, folder, export_path, invert, norm, norm_min, norm_max, haadf_norm, blur, blur_sigma, dtype):
+def processMosaicSingle(master, folder, export_path, invert, norm, norm_min, norm_max, haadf_norm, blur, blur_sigma, dtype, start_time):
     # Initialize arguments
     master.popup.configure(text='Initializing...')
     norm_min = 0.5 if norm_min == "" else float(norm_min)
@@ -154,7 +154,7 @@ def processMosaicNormal(master, folder, export_path, invert, norm, norm_min, nor
         del s
         gc.collect()
     
-    # Post-process each element folder
+    # Load each element map
     for i in elements:
         master.popup.configure(text=f'{i} images\n[Loading]...')
         files = os.listdir(os.path.join(export_path, i))
@@ -168,6 +168,7 @@ def processMosaicNormal(master, folder, export_path, invert, norm, norm_min, nor
             mds.append(md)
         imgs = np.asarray(imgs)
         
+        # Post-process each element map
         master.popup.configure(text=f'{i} images\n[Post-processing]...')
         if blur == 1:
             if not i == "HAADF":
@@ -198,10 +199,9 @@ def processMosaicNormal(master, folder, export_path, invert, norm, norm_min, nor
                        description=json.dumps(mds[j]))
         del imgs
         gc.collect()
-    master.popup.configure(text='Done!')
+    master.popup.configure(text=f'Completed in {(time.time() - start_time):.2f} seconds!')
 
-
-def processMosaicBatch(master, folder, export_path, invert, norm, norm_min, norm_max, haadf_norm, blur, blur_sigma, dtype, start_time):
+def processMosaicMulti(master, folder, export_path, invert, norm, norm_min, norm_max, haadf_norm, blur, blur_sigma, dtype, start_time):
     # Initialize arguments
     master.popup.configure(text='Initializing...')
     norm_min = 0.5 if norm_min == "" else float(norm_min)
@@ -264,7 +264,7 @@ def processMosaicBatch(master, folder, export_path, invert, norm, norm_min, norm
             del s
             gc.collect()
     
-    # Post-process each element folder
+    # Match elements with datasets that contain these maps.
     element_dict = {}
     for c, folder in enumerate(folders):
         for element in elements[c]:
@@ -273,6 +273,8 @@ def processMosaicBatch(master, folder, export_path, invert, norm, norm_min, norm
             if os.path.isdir(os.path.join(export_path, folder, element)):
                 element_dict[element].append(folder)
     non_global_elements = []
+
+    # Load each element map
     for element in element_dict:
         master.popup.configure(text=f'{element} images\n[Loading]...')
         imgs = []
@@ -290,6 +292,8 @@ def processMosaicBatch(master, folder, export_path, invert, norm, norm_min, norm
                 mds.append(md)
                 img_paths.append(file_path)
         imgs = np.asarray(imgs)
+
+        # Post-process each element map
         master.popup.configure(text=f'{element} images\n[Post-processing]...')
         if blur == 1:
             if not i == "HAADF":
@@ -319,7 +323,7 @@ def processMosaicBatch(master, folder, export_path, invert, norm, norm_min, norm
                         description=json.dumps(mds[j]))
         del imgs
         gc.collect()
-    master.popup.configure(text=f'Completed! - Took {(time.time() - start_time):.2f} seconds.' + 
+    master.popup.configure(text=f'Completed in {(time.time() - start_time):.2f} seconds!' + 
                            '\n The following elements were not normalized globally ' + 
                            f'{non_global_elements}')
 

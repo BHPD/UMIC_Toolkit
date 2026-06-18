@@ -1,5 +1,5 @@
 # UMIC_Toolkit
 Common custom Python scripts used for UMIC-related workflows. These workflows have been translated to a GUI for accessibility. Note this is still work-in-progress.
 
-## Download executable
-The latest compiled zipped .exe (for Windows) can be downloaded via <a href = "https://www.nanotomy.org/OA/UMIC_Toolkit/UMIC Toolkit v0.1.2.zip" download>nanotomy.org</a>
+## Usage
+Further instructions will follow. The GUI can be launched through 'python main.py' from the appropriate environment or the GUI can be buid into an .exe using the PyInstaller with the build.spec file. Note that some absolut paths will have to be changed.

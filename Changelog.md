@@ -9,9 +9,11 @@ UMIC Toolkit with a fully functional VeloxEMDConverter module.
 
 #### v0.1.3 (current)
 Minor updates:
-1. [NEW]        WIP: Add batch-conversion for single and mosaic acquisitions where normalization is done globally for the elemental maps.
+1. [NEW]        Add multi-conversion for single and mosaic acquisitions where normalization is done globally for the elemental maps.
+2. [CHANGE]     Renamed normal/batch (files & references) to single/multi to better reflect the underlying operation.
+3. [CHANGE]     Provide (minimal) instructions on how to launch the GUI or package it into an .exe for convenience.
 Bug fixes:
-1. [FIX]        Single-tile OME-TIFF exports now determines and preserves input dtype.
+4. [FIX]        Single-tile OME-TIFF exports now determines and preserves input dtype.
 
 #### v0.1.2
 Minor updates:

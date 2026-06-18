@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import customtkinter
-from .SingleNormalFrame import SingleNormalFrame
-from .SingleBatchFrame import SingleBatchFrame
+from .SingleSingleFrame import SingleSingleFrame
+from .SingleMultiFrame import SingleMultiFrame
 
 class SingleEMDFrame(customtkinter.CTkFrame):
     def __init__(self, master):
@@ -13,13 +13,13 @@ class SingleEMDFrame(customtkinter.CTkFrame):
         self.tabs = customtkinter.CTkTabview(self)
         self.tabs.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
         
-        self.NormalTab = self.tabs.add("Normal mode")
-        self.BatchTab = self.tabs.add("Batch mode")
+        self.SingleTab = self.tabs.add("Single mode")
+        self.MultiTab = self.tabs.add("Multi mode")
 
-        self.NormalFrame = SingleNormalFrame(self.NormalTab)
-        self.NormalFrame.pack(fill="both", expand=True)
-        self.BatchFrame = SingleBatchFrame(self.BatchTab)
-        self.BatchFrame.pack(fill="both", expand=True)
+        self.SingleFrame = SingleSingleFrame(self.SingleTab)
+        self.SingleFrame.pack(fill="both", expand=True)
+        self.MultiFrame = SingleMultiFrame(self.MultiTab)
+        self.MultiFrame.pack(fill="both", expand=True)
     
     def reset(self): 
-        self.tabs.set("Normal mode")
+        self.tabs.set("Single mode")

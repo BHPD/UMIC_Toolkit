@@ -19,13 +19,13 @@ class cEMDSidebar(customtkinter.CTkFrame):
         # Add buttons
         self.single_btn = customtkinter.CTkButton(
             self,
-            text = 'Single',
+            text = 'Single tile(s)',
             fg_color=self.inactive_color,
             command=lambda: self.parent.switch_content('single'))
 
         self.mosaic_btn = customtkinter.CTkButton(
             self,
-            text = 'Mosaic',
+            text = 'Mosaic acquisition(s)',
             fg_color=self.inactive_color,
             command=lambda: self.parent.switch_content('mosaic'))
         
