@@ -1,5 +1,10 @@
 # UMIC_Toolkit
 Common custom Python scripts used for UMIC-related workflows. These workflows have been translated to a GUI for accessibility. Note this is still work-in-progress.
+!(/screenshots/UMIC_Toolkit.png)
+## Modules
+### EMD Converter
+Extracts elemental maps as .tiff files from .emd files, provides instructions for stitching using TrakEM2 and enables converson to .ome.tiff-files.
+!(/screenshots/EMD_Converter.png)
 
 ## Usage
 The GUI can be launched from the command line or packaged into an .exe. First the appropriate environment will have to be created and the repository has to be cloned.
