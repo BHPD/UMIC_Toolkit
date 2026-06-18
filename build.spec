@@ -29,7 +29,7 @@ exe = EXE(
     pyz,
     a.scripts,
     [],
-    name='UMIC Toolkit v0.1.2',
+    name='UMIC Toolkit v0.1.3',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
