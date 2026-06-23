@@ -14,12 +14,12 @@ The GUI can be launched from the command line or packaged into an .exe. First th
 Create a <a href =https://docs.conda.io/en/latest/> conda</a> environment.
 
 ```bash
-conda create --name <environment_name>
+conda create --name environment_name
 ```
 
 Activate the conda environment.
 ```bash
-conda activate <environment_name>
+conda activate environment_name
 ```
 
 ### Clone the repository
