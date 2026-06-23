@@ -8,7 +8,7 @@ a = Analysis(
     binaries=[],
     datas=[
         ('assets/licenses.txt', 'assets'),
-        ('modules/VeloxEMDConverter/frames/StitchInfo.txt', 'assets'),
+        ('modules/VeloxEMDConverter/frames/StitchInfo.txt', '.'),
         ('C:/Users/UMCG/anaconda3/envs/umic_toolkit_build/Lib/site-packages/hyperspy', 'hyperspy'),
         ('C:/Users/UMCG/anaconda3/envs/umic_toolkit_build/Lib/site-packages/rsciio', 'rsciio'),
         ('C:/Users/UMCG/anaconda3/envs/umic_toolkit_build/Lib/site-packages/box', 'box'),
@@ -44,5 +44,5 @@ coll = COLLECT(
     a.datas,
     strip=False,
     upx=True,
-    name='UMIC Toolkit v0.1.2',
+    name='UMIC Toolkit v0.1.3',
 )

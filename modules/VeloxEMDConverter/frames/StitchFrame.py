@@ -29,10 +29,12 @@ class StitchFrame(customtkinter.CTkFrame):
         self.info.pack(anchor = 'w', fill = 'both', expand = True)
 
     def file_path(self, relative_path):
-    # for PyInstaller
+        # for PyInstaller
         if hasattr(sys, 'frozen'):
             base_path = sys._MEIPASS
         # for development
         else:
             base_path = os.path.dirname(os.path.abspath(__file__))
         return os.path.join(base_path, relative_path)
+    
+    
