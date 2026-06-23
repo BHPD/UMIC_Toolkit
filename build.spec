@@ -8,7 +8,7 @@ a = Analysis(
     binaries=[],
     datas=[
         ('assets/licenses.txt', 'assets'),
-        ('modules/VeloxEMDConverter/frames/StitchInfo.txt', 'assets'),
+        ('modules/VeloxEMDConverter/frames/StitchInfo.txt', '.'),
         ('C:/Users/UMCG/anaconda3/envs/umic_toolkit_build/Lib/site-packages/hyperspy', 'hyperspy'),
         ('C:/Users/UMCG/anaconda3/envs/umic_toolkit_build/Lib/site-packages/rsciio', 'rsciio'),
         ('C:/Users/UMCG/anaconda3/envs/umic_toolkit_build/Lib/site-packages/box', 'box'),
@@ -29,7 +29,7 @@ exe = EXE(
     pyz,
     a.scripts,
     [],
-    name='UMIC Toolkit v0.1.2',
+    name='UMIC Toolkit v0.1.3',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -44,5 +44,5 @@ coll = COLLECT(
     a.datas,
     strip=False,
     upx=True,
-    name='UMIC Toolkit v0.1.2',
+    name='UMIC Toolkit v0.1.3',
 )

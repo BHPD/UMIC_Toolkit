@@ -7,7 +7,17 @@ Z. Patch
 ### v0.2.0 (future plans)
 UMIC Toolkit with a fully functional VeloxEMDConverter module.
 
-#### v0.1.2 (current)
+#### v0.1.3 (current)
+Minor updates:
+1. [NEW]        Add multi-conversion for single and mosaic acquisitions where normalization is done globally for the elemental maps.
+2. [CHANGE]     Renamed normal/batch (files & references) to single/multi to better reflect the underlying operation.
+3. [CHANGE]     Updated auxillary files (e.g. README.md)
+
+Bug fixes:
+
+4. [FIX]        Single-tile OME-TIFF exports now determines and preserves input dtype.
+
+#### v0.1.2
 Minor updates:
 1. [CHANGE]     Default HAADF normalization to global.
 2. [CHANGE]     Indicate category in changelog.
@@ -15,7 +25,8 @@ Minor updates:
 4. [CHANGE]     Updated README.md
 
 Bug fixes:
-4. [FIX]        Fixed crashing .exe.
+
+5. [FIX]        Fixed crashing .exe.
 
 #### v0.1.1
 Minor updates:
@@ -30,9 +41,11 @@ Minor updates:
 9. [NEW]        Added conversion from TrakEM2 export to OME-TIFF.
 
 Bug fixes:
+
 10. [FIX]       Data files within the .emd with titles in ['a'] will now be excluded
 
 Known bugs:
+
 11. [BUG]       Something may still be wrong with the OME-XML.
 
 #### v0.1.0

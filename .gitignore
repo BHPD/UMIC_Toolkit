@@ -1,5 +1,9 @@
 # Ignore cache files
 __pycache__/
+.vscode/
+private/
+build/
+dist/
 *.pyc
 *.pyo
 *.pyd

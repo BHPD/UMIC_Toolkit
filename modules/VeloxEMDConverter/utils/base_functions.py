@@ -1,5 +1,5 @@
 from importlib.metadata import metadata
-import os, math, gc, traceback, json
+import os, math, gc, traceback, json, time
 
 import hyperspy.api as hs
 import numpy as np
@@ -47,7 +47,7 @@ def flattenMD(md, parent_key='', sep='.'):
             items.append((new_key, v))
     return dict(items)
 
-def processSingleNormal(master, file, export_path, invert, norm, norm_min, norm_max, blur, blur_sigma, dtype):
+def processSingleSingle(master, file, export_path, invert, norm, norm_min, norm_max, blur, blur_sigma, dtype, start_time):
     # Initialize arguments
     master.popup.configure(text='Initializing...')
     norm_min = 0.5 if norm_min == "" else float(norm_min)
@@ -99,9 +99,9 @@ def processSingleNormal(master, file, export_path, invert, norm, norm_min, norm_
     except Exception as e:
         print('Error:', e)
         traceback.print_exc()   
-    master.popup.configure(text='Done!')
+    master.popup.configure(text=f'Completed in {(time.time() - start_time):.2f} seconds!')
         
-def processMosaicNormal(master, folder, export_path, invert, norm, norm_min, norm_max, haadf_norm, blur, blur_sigma, dtype):
+def processMosaicSingle(master, folder, export_path, invert, norm, norm_min, norm_max, haadf_norm, blur, blur_sigma, dtype, start_time):
     # Initialize arguments
     master.popup.configure(text='Initializing...')
     norm_min = 0.5 if norm_min == "" else float(norm_min)
@@ -154,7 +154,7 @@ def processMosaicNormal(master, folder, export_path, invert, norm, norm_min, nor
         del s
         gc.collect()
     
-    # Post-process each element folder
+    # Load each element map
     for i in elements:
         master.popup.configure(text=f'{i} images\n[Loading]...')
         files = os.listdir(os.path.join(export_path, i))
@@ -168,6 +168,7 @@ def processMosaicNormal(master, folder, export_path, invert, norm, norm_min, nor
             mds.append(md)
         imgs = np.asarray(imgs)
         
+        # Post-process each element map
         master.popup.configure(text=f'{i} images\n[Post-processing]...')
         if blur == 1:
             if not i == "HAADF":
@@ -177,11 +178,8 @@ def processMosaicNormal(master, folder, export_path, invert, norm, norm_min, nor
                         blur_sigma)
         if norm == 1:
             if i == "HAADF" and haadf_norm == "Local HAADF normalization":
-                print(imgs.shape)
                 imgs = imgs.astype('float32')
                 for j in range(imgs.shape[0]):
-                    print(np.percentile(imgs[j,:,:], norm_min))
-                    print(np.percentile(imgs[j,:,:], norm_max))
                     imgs[j,:,:] = normalizeImg(
                         imgs[j,:,:],
                         np.percentile(imgs[j,:,:], norm_min),
@@ -201,7 +199,133 @@ def processMosaicNormal(master, folder, export_path, invert, norm, norm_min, nor
                        description=json.dumps(mds[j]))
         del imgs
         gc.collect()
-    master.popup.configure(text='Done!')
+    master.popup.configure(text=f'Completed in {(time.time() - start_time):.2f} seconds!')
+
+def processMosaicMulti(master, folder, export_path, invert, norm, norm_min, norm_max, haadf_norm, blur, blur_sigma, dtype, start_time):
+    # Initialize arguments
+    master.popup.configure(text='Initializing...')
+    norm_min = 0.5 if norm_min == "" else float(norm_min)
+    norm_max = 99.5 if norm_max =="" else float(norm_max)
+    blur_sigma = 1.0 if blur_sigma == "" else float(blur_sigma)
+    dtype = (65535, 'uint16') if dtype == "16-bit" else (255, 'uint8')
+    
+    # Index folders
+    folders = [i for i in os.listdir(folder)]
+    folder_paths = [os.path.join(folder, i) for i in folders]
+
+    # Index files
+    files = []
+    file_paths = []
+    for c, path in enumerate(folder_paths):
+        files.append([i for i in os.listdir(path) if i.endswith(".emd")])
+        file_paths.append([os.path.join(path, i) for i in files[c]])
+
+    # Load the first .emd file for initalization purposes
+    elements = []
+    for c, path in enumerate(file_paths):
+        s = hs.load(path[0], select_type = 'images')
+        elements.append([s[i].metadata.General.title 
+                    for i in range(len(s))
+                    if s[i].metadata.General.title not in excluded_titles])
+
+        del s
+        gc.collect()
+
+        # Try to make element export folders
+        master.popup.configure(text=f'Making export folders...')
+        for i in elements[c]:
+            try:
+                os.makedirs(os.path.join(export_path, folders[c], i))
+            except:
+                pass
+    
+    # Try to process each .emd file and write the raw images it contains as .tiff files       
+        for file in path:
+            master.popup.configure(text=f'Processing {os.path.basename(file)}\n[Loading]...')
+            s = hs.load(file, select_type = 'images', load_SI_image_stack = True)
+            md = s[0].original_metadata.as_dictionary()
+            for j in range(len(s)):
+                element = s[j].metadata.General.title
+                if element in excluded_titles:
+                    continue
+                elif element == "HAADF":
+                    img = np.asarray(s[j])[-1,:,:].astype('uint16')
+                    if invert == 1:
+                        img = np.invert(img)
+                else:
+                    img = np.asarray(s[j])
+                master.popup.configure(text=f'Processing {os.path.basename(file)}\n[Writing]...')
+                tf.imwrite(os.path.join(export_path,
+                                        folders[c],
+                                        element,
+                                        os.path.basename(file[:-4]) + ".tiff"),
+                                        img,
+                                        description=json.dumps(md))
+            del s
+            gc.collect()
+    
+    # Match elements with datasets that contain these maps.
+    element_dict = {}
+    for c, folder in enumerate(folders):
+        for element in elements[c]:
+            if element not in element_dict:
+                element_dict[element] = []
+            if os.path.isdir(os.path.join(export_path, folder, element)):
+                element_dict[element].append(folder)
+    non_global_elements = []
+
+    # Load each element map
+    for element in element_dict:
+        master.popup.configure(text=f'{element} images\n[Loading]...')
+        imgs = []
+        mds = []
+        img_paths = []
+        if element_dict[element] != folders:
+            non_global_elements.append(element) 
+        for folder in element_dict[element]:
+            files = os.listdir(os.path.join(export_path, folder, element))
+            file_paths = [os.path.join(export_path, folder, element, j) for j in files]
+            for file_path in file_paths:
+                imgs.append(tf.imread(file_path))
+                with tf.TiffFile(file_path) as file:
+                    md = json.loads(file.pages[0].description)
+                mds.append(md)
+                img_paths.append(file_path)
+        imgs = np.asarray(imgs)
+
+        # Post-process each element map
+        master.popup.configure(text=f'{element} images\n[Post-processing]...')
+        if blur == 1:
+            if not i == "HAADF":
+                for j in range(imgs.shape[0]):
+                    imgs[j,:,:,] = gaussian(
+                        imgs[j,:,:],
+                        blur_sigma)
+        if norm == 1:
+            if i == "HAADF" and haadf_norm == "Local HAADF normalization":
+                imgs = imgs.astype('float32')
+                for j in range(imgs.shape[0]):
+                    imgs[j,:,:] = normalizeImg(
+                        imgs[j,:,:],
+                        np.percentile(imgs[j,:,:], norm_min),
+                        np.percentile(imgs[j,:,:], norm_max))
+            else:
+                imgs = normalizeImg(
+                    imgs,
+                    np.percentile(imgs, norm_min),
+                    np.percentile(imgs, norm_max))
+            imgs = (imgs*dtype[0])
+
+        master.popup.configure(text=f'{element} images\n[Writing]...')
+        for j in range(imgs.shape[0]):
+            tf.imwrite(img_paths[j], 
+                        imgs[j,:,:].astype(dtype[1]),
+                        description=json.dumps(mds[j]))
+        del imgs
+        gc.collect()
+    master.popup.configure(text=f'Completed in {(time.time() - start_time):.2f} seconds!' + 
+                           '\n The following elements were not normalized globally ' + 
+                           f'{non_global_elements}')
 
 def tiffFolderToOmeTiff(master, folder, export_path, name, metadata_tiff):
     master.popup.configure(text='Initializing...')
@@ -220,11 +344,12 @@ def tiffFolderToOmeTiff(master, folder, export_path, name, metadata_tiff):
         master.popup.configure(text=f'Processing {channels[c]}\n[Loading]...')
         ds_imgs = []
         img = tf.imread(os.path.join(folder, file))
+        img_dtype = img.dtype
         levels = int(math.log((np.max(img.shape) / 256), 2) +1)
         master.popup.configure(text=f'Processing {channels[c]}\n[Generating pyramid]...')
         ds_img_gen = pyramid_gaussian(img, levels, preserve_range= True)
         for ds_img in range(levels):
-            ds_imgs.append(np.asarray(next(ds_img_gen), dtype = 'uint8'))
+            ds_imgs.append(np.asarray(next(ds_img_gen), dtype = img_dtype))
         images.append(ds_imgs)
         del img, ds_imgs, ds_img
         gc.collect()
@@ -237,7 +362,7 @@ def tiffFolderToOmeTiff(master, folder, export_path, name, metadata_tiff):
                                               md['BinaryResult']['PixelUnitX'])
         metadata = {
             "axes": "CYX",
-            "SignificantBits": 8,
+            "SignificantBits": img_dtype.itemsize *8,
             "PhysicalSizeX": pixel_size_um,
             "PhysicalSizeXUnit": 'µm',
             "PhysicalSizeY": pixel_size_um,

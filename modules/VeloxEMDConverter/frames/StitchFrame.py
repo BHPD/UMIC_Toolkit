@@ -7,7 +7,7 @@ class StitchFrame(customtkinter.CTkFrame):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
 
-        StitchInfoPath = self.file_path(os.path.join("assets", "StitchInfo.txt"))
+        StitchInfoPath = self.file_path(os.path.join("StitchInfo.txt"))
         try:
             with open(StitchInfoPath, "r", encoding="utf-8") as f:
                 info_text = f.read()
@@ -29,10 +29,12 @@ class StitchFrame(customtkinter.CTkFrame):
         self.info.pack(anchor = 'w', fill = 'both', expand = True)
 
     def file_path(self, relative_path):
-    # for PyInstaller
+        # for PyInstaller
         if hasattr(sys, 'frozen'):
             base_path = sys._MEIPASS
         # for development
         else:
             base_path = os.path.dirname(os.path.abspath(__file__))
         return os.path.join(base_path, relative_path)
+    
+    
