@@ -114,3 +114,54 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+/// HyperSpy
+
+GNU General Public License v3.0 or later (GPL-3.0-or-later)
+
+Copyright (C) 2007-2025 The HyperSpy developers
+https://github.com/hyperspy/hyperspy
+
+HyperSpy is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version.
+
+HyperSpy is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+The full license text is included as third_party/GPL-3.0.txt and is
+available at https://www.gnu.org/licenses/gpl-3.0.txt
+
+/// RosettaSciIO
+
+GNU General Public License v3.0 or later (GPL-3.0-or-later)
+
+Copyright (C) 2007-2025 The HyperSpy developers
+https://github.com/hyperspy/rosettasciio
+
+RosettaSciIO is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version. It is distributed WITHOUT ANY WARRANTY; see the GNU
+General Public License (third_party/GPL-3.0.txt) for more details.
+
+/// OpenSlide (openslide-python, openslide-bin; optional, BIOMERO Converter module)
+
+GNU Lesser General Public License v2.1 (LGPL-2.1-only), with bundled
+libraries under various permissive licenses (BSD, MIT, Zlib, libpng, libtiff, IJG, ...)
+
+Copyright (C) 2007-2025 Carnegie Mellon University and others
+https://openslide.org  -  source: https://github.com/openslide/openslide-bin
+
+The OpenSlide libraries are shipped as separate, replaceable DLL files.
+The full license text is included as third_party/LGPL-2.1.txt; licenses of
+the bundled libraries are included with the openslide_bin package files.
+
+/// Note on the UMIC Toolkit executable
+
+The packaged executable includes GPL-3.0-or-later components (HyperSpy,
+RosettaSciIO) and is therefore distributed under the terms of the GNU
+General Public License v3.0. The corresponding source code is available at
+https://github.com/BHPD/UMIC_Toolkit (see the release tag matching this version).

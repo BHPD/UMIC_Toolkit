@@ -1,0 +1,2 @@
+# Needed only to build the .exe (pyinstaller build.spec)
+pyinstaller==6.22.3

@@ -12,6 +12,11 @@ Minor updates:
 1. [NEW]        BIOMERO Converter module: GUI for biomero-converter (Leica, Incucyte, iSyntax, MIRAX, DICOM, .db, (OME-)TIFF, OME-Zarr -> OME-Zarr / OME-TIFF).
 2. [CHANGE]     Modules are registered in main.py and imported only when opened, so a missing optional dependency no longer affects other modules.
 3. [CHANGE]     build.spec bundles biomero-converter and its dependencies when installed in the build environment.
+4. [NEW]        GitHub Actions workflow builds the Windows .exe and attaches it to each published release.
+5. [NEW]        requirements.txt (tested, pinned versions) and requirements-build.txt.
+6. [CHANGE]     Python 3.12 or newer is now required; main.py checks this at startup.
+7. [CHANGE]     build.spec no longer contains machine-specific paths.
+8. [NEW]        License notices for HyperSpy, RosettaSciIO and OpenSlide; GPL-3.0 and LGPL-2.1 texts are bundled with the .exe.
 
 #### v0.1.3 (current)
 Minor updates:

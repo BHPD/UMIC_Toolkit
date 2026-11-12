@@ -1,6 +1,16 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+import os, importlib.util
 from PyInstaller.utils.hooks import collect_all
+
+# Name of the build (folder + exe). CI passes the release tag via UMIC_VERSION.
+app_name = 'UMIC Toolkit ' + os.environ.get('UMIC_VERSION', 'v0.1.3')
+
+
+def package_dir(pkg):
+    # Location of an installed package, so no machine-specific paths are needed.
+    return os.path.dirname(importlib.util.find_spec(pkg).origin)
+
 
 block_cipher = None
 
@@ -30,10 +40,11 @@ a = Analysis(
     binaries=extra_binaries,
     datas=[
         ('assets/licenses.txt', 'assets'),
+        ('assets/third_party', 'third_party'),
         ('modules/VeloxEMDConverter/frames/StitchInfo.txt', '.'),
-        ('C:/Users/UMCG/anaconda3/envs/umic_toolkit_build/Lib/site-packages/hyperspy', 'hyperspy'),
-        ('C:/Users/UMCG/anaconda3/envs/umic_toolkit_build/Lib/site-packages/rsciio', 'rsciio'),
-        ('C:/Users/UMCG/anaconda3/envs/umic_toolkit_build/Lib/site-packages/box', 'box'),
+        (package_dir('hyperspy'), 'hyperspy'),
+        (package_dir('rsciio'), 'rsciio'),
+        (package_dir('box'), 'box'),
     ] + extra_datas,
     hiddenimports=[
         'xsdata_pydantic_basemodel.hooks',
@@ -51,7 +62,7 @@ exe = EXE(
     pyz,
     a.scripts,
     [],
-    name='UMIC Toolkit v0.1.3',
+    name=app_name,
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -66,5 +77,5 @@ coll = COLLECT(
     a.datas,
     strip=False,
     upx=True,
-    name='UMIC Toolkit v0.1.3',
+    name=app_name,
 )

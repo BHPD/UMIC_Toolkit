@@ -1,0 +1,18 @@
+# Runtime dependencies of the UMIC Toolkit (tested together on Python 3.12+).
+# Install with: pip install -r requirements.txt
+
+# GUI
+customtkinter==6.0.0
+
+# Velox EMD Converter
+hyperspy==2.5.0
+rosettasciio==0.15.0
+python-box==7.4.1
+ome-types==0.7.0
+tifffile==2026.11.8
+numpy==2.5.4
+scikit-image==0.26.0
+matplotlib==3.11.2
+
+# BIOMERO Converter (optional module, requires Python >= 3.12)
+biomero-converter==0.2.3

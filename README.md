@@ -10,20 +10,16 @@ Extracts elemental maps as .tiff files from .emd files, provides instructions fo
 ### BIOMERO Converter
 Converts microscopy files to OME-Zarr (v0.4/v0.5/v0.6) or OME-TIFF using <a href=https://github.com/NL-BioImaging/biomero-converter>biomero-converter</a>. Supports Leica (.lif, .lof, .xlef, ...), Incucyte archives (.icarch), iSyntax, MIRAX (.mrxs), DICOM, image .db files, (OME-)TIFF and OME-Zarr. Several files can be queued and converted in one go.
 
-This module is optional and needs Python 3.12 or newer:
-```bash
-pip install biomero-converter
-```
-If it is not installed, the EMD Converter still works and the toolkit shows an install hint when the BIOMERO Converter is opened.
+It is installed with the other requirements (see below). If it is not installed, the EMD Converter still works and the toolkit shows an install hint when the BIOMERO Converter is opened.
 
 ## Usage
 The GUI can be launched from the command line or packaged into an .exe. First the appropriate environment will have to be created and the repository has to be cloned.
 
 ### Create environment
-Create a <a href =https://docs.conda.io/en/latest/> conda</a> environment.
+The toolkit requires **Python 3.12 or newer**. Create a <a href =https://docs.conda.io/en/latest/> conda</a> environment with a suitable Python version.
 
 ```bash
-conda create --name environment_name
+conda create --name environment_name python=3.12
 ```
 
 Activate the conda environment.
@@ -50,9 +46,12 @@ cd UMIC_Toolkit
 Install the required packages using the requirements.txt file.
 
 ```bash
-conda install --file requirements.txt
+pip install -r requirements.txt
 ```
-<i>Note this requirements.txt is not available yet</i>
+The versions in requirements.txt have been tested together. To build the .exe, also install the build requirements:
+```bash
+pip install -r requirements-build.txt
+```
 
 ### Launch GUI
 Activate the appropriate environment.
@@ -62,8 +61,7 @@ python main.py
 ```
 
 ### (Optional) package the GUI into a .exe for convenience
-Change the build.spec file such that the relevant absolute paths are correct for your computer.
-Using PyInstaller:
+Using PyInstaller (no paths need to be changed; installed packages are located automatically):
 ```bash
 pyinstaller build.spec --clean
 ```

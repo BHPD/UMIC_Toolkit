@@ -1,5 +1,11 @@
 import os, sys, importlib, customtkinter
 from tkinter import messagebox
+
+MIN_PYTHON = (3, 12)
+if sys.version_info < MIN_PYTHON:
+    sys.exit(f"UMIC Toolkit requires Python {'.'.join(map(str, MIN_PYTHON))} or newer "
+             f"(found {sys.version.split()[0]}).")
+
 from assets.load_licenses import license_window
 
 # Registry of toolkit modules: (button label, module path, class name, install hint).
@@ -9,7 +15,7 @@ MODULES = [
     ("Velox EMD Converter", "modules.VeloxEMDConverter.VeloxEMDConverter", "VeloxEMDConverter",
      None),
     ("BIOMERO Converter", "modules.BiomeroConverter.BiomeroConverter", "BiomeroConverter",
-     "pip install biomero-converter  (requires Python >= 3.12)"),
+     "pip install biomero-converter"),
 ]
 
 customtkinter.set_appearance_mode("dark") 
