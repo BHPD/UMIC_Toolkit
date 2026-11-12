@@ -24,7 +24,7 @@ Minor updates:
 13. [CHANGE]    Requires biomero-converter >= 0.2.5: it ships its own PyInstaller hook (bundles the metadata schemas needed for conversion in the .exe), and the GUI uses its default output format (OME-Zarr 0.5).
 14. [NEW]       _testing/build_exe_debug.ps1: local debug build of the .exe (throwaway environment, runtime-file check, run in console, optional release zip).
 15. [FIX]       build.spec builds only the one-folder app; it no longer also writes a separate .exe without the libraries next to the build folder.
-16. [CHANGE]    The biomero-converter module opens the GUI that now ships with biomero-converter (>= 0.3.0, [gui] extra) instead of its own copy.
+16. [CHANGE]    The biomero-converter module opens the GUI that now ships with biomero-converter (>= 0.4.0, [gui] extra) instead of its own copy: per-input selection of images / plates / series, relative output folder, progress bar.
 
 #### v0.1.3 (current)
 Minor updates:
