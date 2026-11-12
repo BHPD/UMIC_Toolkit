@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 biomero-converter module: opens the desktop GUI that ships with biomero-converter
-(https://github.com/NL-BioImaging/biomero-converter, >= 0.3.0 with the [gui] extra).
+(https://github.com/NL-BioImaging/biomero-converter, >= 0.4.0 with the [gui] extra).
 
 Converts microscopy files (Leica, Incucyte, iSyntax, MIRAX, DICOM, .db, (OME-)TIFF,
 OME-Zarr, ...) to OME-Zarr or OME-TIFF. The interface and all conversion logic live in
