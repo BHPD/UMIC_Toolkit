@@ -24,11 +24,11 @@ module_imports = [
     'modules.BiomeroConverter.BiomeroConverter',
 ]
 
-# HyperSpy, RosettaSciIO and python-box load submodules dynamically (plugins,
-# IO readers), so include all their submodules. (Previously hooks/hook-hyperspy.py.)
+# HyperSpy and RosettaSciIO load submodules dynamically (plugins, IO readers),
+# so include all their submodules. (Previously hooks/hook-hyperspy.py.)
+# python-box is excluded from analysis and shipped as a plain folder (see datas).
 dynamic_imports = (collect_submodules('hyperspy') +
-                   collect_submodules('rsciio') +
-                   collect_submodules('box'))
+                   collect_submodules('rsciio'))
 
 # Optional: bundle biomero-converter and its dependencies (data files, native
 # libraries such as OpenSlide, codecs) when it is installed in the build env.
