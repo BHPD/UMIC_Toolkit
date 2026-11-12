@@ -161,7 +161,7 @@ the bundled libraries are included with the openslide_bin package files.
 
 /// Note on the UMIC Toolkit executable
 
-The packaged executable includes GPL-3.0-or-later components (HyperSpy,
-RosettaSciIO) and is therefore distributed under the terms of the GNU
-General Public License v3.0. The corresponding source code is available at
+The UMIC Toolkit is licensed under the GNU General Public License v3.0 or
+later (GPL-3.0-or-later); see the LICENSE file. The packaged executable also
+includes GPL-3.0-or-later components (HyperSpy, RosettaSciIO). The corresponding source code is available at
 https://github.com/BHPD/UMIC_Toolkit (see the release tag matching this version).

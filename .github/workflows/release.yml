@@ -43,7 +43,7 @@ jobs:
         run: |
           $name = "UMIC Toolkit $env:UMIC_VERSION"
           Copy-Item README.md, Changelog.md "dist/$name/"
-          Copy-Item assets/third_party/GPL-3.0.txt "dist/$name/LICENSE-GPL-3.0.txt"
+          Copy-Item LICENSE "dist/$name/LICENSE.txt"
           Compress-Archive -Path "dist/$name" -DestinationPath "UMIC_Toolkit_${env:UMIC_VERSION}_windows.zip"
 
       - name: Upload workflow artifact

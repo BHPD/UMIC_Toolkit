@@ -20,6 +20,7 @@ Minor updates:
 9. [NEW]        pyproject.toml with dependencies, optional extras ([biomero], [build]), Python >= 3.12 and an umic-toolkit command.
 10. [CHANGE]    Version is defined once (main.__version__) and used by the window title, pyproject.toml and build.spec.
 11. [CHANGE]    Removed hooks/ folder: hyperspy submodules are collected in build.spec; the ruamel.yaml hook ships with PyInstaller.
+12. [NEW]       The UMIC Toolkit is licensed under GPL-3.0-or-later (LICENSE file).
 
 #### v0.1.3 (current)
 Minor updates:

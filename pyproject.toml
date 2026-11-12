@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=70"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -9,9 +9,8 @@ description = "GUI toolkit for UMIC microscopy workflows: Velox EMD conversion a
 readme = "README.md"
 requires-python = ">=3.12"
 authors = [{ name = "B.H.P. Duinkerken" }]
-# The packaged executable is GPL-3.0 because it bundles HyperSpy/RosettaSciIO
-# (see assets/licenses.txt). The license of the toolkit's own code is still to
-# be set by its authors (no LICENSE file yet).
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
 dependencies = [
     "customtkinter>=5.2",
     "hyperspy>=2.0",

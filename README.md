@@ -68,4 +68,5 @@ Using PyInstaller (no paths need to be changed; installed packages are located a
 pyinstaller build.spec --clean
 ```
 
-
+## License
+The UMIC Toolkit is licensed under the <a href=https://www.gnu.org/licenses/gpl-3.0.html>GNU General Public License v3.0 or later</a> (GPL-3.0-or-later); see [LICENSE](LICENSE). Licenses of third-party packages are listed in [assets/licenses.txt](assets/licenses.txt).
