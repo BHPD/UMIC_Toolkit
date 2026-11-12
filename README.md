@@ -66,5 +66,11 @@ Using PyInstaller (no paths need to be changed; installed packages are located a
 pyinstaller build.spec --clean
 ```
 
+For debugging a build locally (Windows PowerShell), `_testing/build_exe_debug.ps1` builds the .exe in a throwaway environment in %TEMP% (nothing is written to the repository), checks that the files the app loads at runtime are included, and can run the exe in the console so errors stay visible:
+```powershell
+.\_testinguild_exe_debug.ps1 -Run
+```
+See the top of the script for all options (`-RunOnly`, `-Upgrade`, `-Reinstall`, `-Cleanup`, ...).
+
 ## License
 The UMIC Toolkit is licensed under the <a href=https://www.gnu.org/licenses/gpl-3.0.html>GNU General Public License v3.0 or later</a> (GPL-3.0-or-later); see [LICENSE](LICENSE). Licenses of third-party packages are listed in [assets/licenses.txt](assets/licenses.txt).
