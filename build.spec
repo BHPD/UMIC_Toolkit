@@ -47,17 +47,19 @@ a = Analysis(
 
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
+# One-folder build: the exe holds only the Python code; COLLECT puts it in the
+# "<app_name>" folder together with the libraries and data (exclude_binaries=True).
 exe = EXE(
     pyz,
     a.scripts,
     [],
+    exclude_binaries=True,
     name=app_name,
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
     console=True,
-    onefile=False,
 )
 
 coll = COLLECT(

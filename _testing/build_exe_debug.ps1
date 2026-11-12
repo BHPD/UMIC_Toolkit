@@ -16,6 +16,7 @@
     .\_testing\build_exe_debug.ps1              # build
     .\_testing\build_exe_debug.ps1 -Run         # build, then run the exe in this console
     .\_testing\build_exe_debug.ps1 -RunOnly     # run the last build without rebuilding
+    .\_testing\build_exe_debug.ps1 -Package     # build, then also create the zip a release would publish
     .\_testing\build_exe_debug.ps1 -Upgrade     # upgrade packages to the latest allowed versions
     .\_testing\build_exe_debug.ps1 -Python 3.12 -Reinstall
     .\_testing\build_exe_debug.ps1 -Cleanup     # remove venv and build output
@@ -27,6 +28,7 @@ param(
     [switch]$Reinstall,            # recreate the venv
     [switch]$Upgrade,              # upgrade packages in the existing venv
     [switch]$DebugLog,             # PyInstaller --log-level DEBUG
+    [switch]$Package,              # also create the release zip (build folder and exe are kept)
     [switch]$Cleanup               # delete venv + build output and exit
 )
 
@@ -147,6 +149,18 @@ if ($missing) {
     $missing | ForEach-Object { Write-Host "  $_  ($($expected[$_]))" -ForegroundColor Red }
 } else {
     Write-Host "Runtime files: all $($expected.Count) checked files present" -ForegroundColor Green
+}
+
+# --- Optional: package like the release workflow ("Package" step in release.yml) -----
+if ($Package) {
+    # Adds README, Changelog and LICENSE.txt to the build folder and zips it next to it;
+    # the build folder and exe are kept, so the build can still be run and inspected.
+    Copy-Item (Join-Path $repo "README.md"), (Join-Path $repo "Changelog.md") $outputDir
+    Copy-Item (Join-Path $repo "LICENSE") (Join-Path $outputDir "LICENSE.txt")
+    $zip = Join-Path $distPath "UMIC_Toolkit_debug_windows.zip"
+    Compress-Archive -Path $outputDir -DestinationPath $zip -Force
+    Write-Host "Release zip ($([math]::Round((Get-Item $zip).Length / 1MB)) MB, same layout as a release asset):" -ForegroundColor Cyan
+    Write-Host "  $zip"
 }
 
 if ($Run) {

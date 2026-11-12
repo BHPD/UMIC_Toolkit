@@ -70,7 +70,7 @@ For debugging a build locally (Windows PowerShell), `_testing/build_exe_debug.ps
 ```powershell
 .\_testing\build_exe_debug.ps1 -Run
 ```
-See the top of the script for all options (`-RunOnly`, `-Upgrade`, `-Reinstall`, `-Cleanup`, ...).
+Add `-Package` to also create the zip a release would publish (the build folder and exe are kept). See the top of the script for all options (`-RunOnly`, `-Upgrade`, `-Reinstall`, `-Cleanup`, ...).
 
 ## License
 The UMIC Toolkit is licensed under the <a href=https://www.gnu.org/licenses/gpl-3.0.html>GNU General Public License v3.0 or later</a> (GPL-3.0-or-later); see [LICENSE](LICENSE). Licenses of third-party packages are listed in [assets/licenses.txt](assets/licenses.txt).
