@@ -119,12 +119,17 @@ try {
 if ($buildExit -ne 0) { throw "PyInstaller failed (exit code $buildExit)" }
 
 # --- Summary --------------------------------------------------------------
-$sizeMB = [math]::Round(((Get-ChildItem (Join-Path $distPath $name) -Recurse -File | Measure-Object Length -Sum).Sum) / 1MB)
+# Each label is on its own line and each path/command alone on the next, so it can be copied as-is.
+$outputDir = Join-Path $distPath $name
+$sizeMB = [math]::Round(((Get-ChildItem $outputDir -Recurse -File | Measure-Object Length -Sum).Sum) / 1MB)
 $warn   = Join-Path $workPath "build\warn-build.txt"
 Write-Host "`n=== Done in $([math]::Round($sw.Elapsed.TotalMinutes, 1)) min ===" -ForegroundColor Green
-Write-Host "Output : $(Join-Path $distPath $name)  ($sizeMB MB)"
-Write-Host "Exe    : $exe"
-Write-Host "Missing-module report: $warn"
+Write-Host "`nBuild folder ($sizeMB MB; this folder is what a release zips):" -ForegroundColor Cyan
+Write-Host "  $outputDir"
+Write-Host "Exe:" -ForegroundColor Cyan
+Write-Host "  $exe"
+Write-Host "Missing-module report (imports PyInstaller could not resolve; mostly optional):" -ForegroundColor Cyan
+Write-Host "  $warn"
 
 # --- Sanity check: files the app loads at runtime -----------------------------
 $internal = Join-Path $distPath "$name\_internal"
@@ -147,10 +152,16 @@ if ($missing) {
 if ($Run) {
     Run-Exe
 } else {
-    Write-Host "`nThe exe was built but not started. To run it (console output stays visible):" -ForegroundColor Yellow
-    Write-Host "  .\_testing\build_exe_debug.ps1 -RunOnly"
-    Write-Host "  or directly:  & `"$exe`""
-    Write-Host "  or open the folder:  explorer `"$(Split-Path $exe)`""
+    $script = $PSCommandPath
+    Write-Host "`nThe exe was built but not started. Copy one of these lines into PowerShell:" -ForegroundColor Yellow
+    Write-Host "Run the exe in this console (errors stay visible):" -ForegroundColor Cyan
+    Write-Host "  & `"$exe`""
+    Write-Host "Same, through this script (works from any folder):" -ForegroundColor Cyan
+    Write-Host "  & `"$script`" -RunOnly"
+    Write-Host "Open the build folder in Explorer:" -ForegroundColor Cyan
+    Write-Host "  explorer `"$outputDir`""
+    Write-Host "Open the missing-module report:" -ForegroundColor Cyan
+    Write-Host "  notepad `"$warn`""
 }
 
 } finally {
