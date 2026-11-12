@@ -7,6 +7,15 @@ Common custom Python scripts used for UMIC-related workflows. These workflows ha
 Extracts elemental maps as .tiff files from .emd files, provides instructions for stitching using TrakEM2 and enables converson to .ome.tiff-files.
 <p align="center"><img src="screenshots/EMD_Converter.png" alt = "EMD Converter image" width = "450"></p>
 
+### BIOMERO Converter
+Converts microscopy files to OME-Zarr (v0.4/v0.5/v0.6) or OME-TIFF using <a href=https://github.com/NL-BioImaging/biomero-converter>biomero-converter</a>. Supports Leica (.lif, .lof, .xlef, ...), Incucyte archives (.icarch), iSyntax, MIRAX (.mrxs), DICOM, image .db files, (OME-)TIFF and OME-Zarr. Several files can be queued and converted in one go.
+
+This module is optional and needs Python 3.12 or newer:
+```bash
+pip install biomero-converter
+```
+If it is not installed, the EMD Converter still works and the toolkit shows an install hint when the BIOMERO Converter is opened.
+
 ## Usage
 The GUI can be launched from the command line or packaged into an .exe. First the appropriate environment will have to be created and the repository has to be cloned.
 

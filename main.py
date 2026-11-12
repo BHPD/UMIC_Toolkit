@@ -1,6 +1,16 @@
-import os,  sys, customtkinter
-from modules.VeloxEMDConverter.VeloxEMDConverter import VeloxEMDConverter
+import os, sys, importlib, customtkinter
+from tkinter import messagebox
 from assets.load_licenses import license_window
+
+# Registry of toolkit modules: (button label, module path, class name, install hint).
+# Modules are imported only when opened, so a missing optional dependency
+# (e.g. biomero-converter) does not prevent the other modules from working.
+MODULES = [
+    ("Velox EMD Converter", "modules.VeloxEMDConverter.VeloxEMDConverter", "VeloxEMDConverter",
+     None),
+    ("BIOMERO Converter", "modules.BiomeroConverter.BiomeroConverter", "BiomeroConverter",
+     "pip install biomero-converter  (requires Python >= 3.12)"),
+]
 
 customtkinter.set_appearance_mode("dark") 
 customtkinter.set_default_color_theme("dark-blue")
@@ -14,10 +24,12 @@ class UMICToolkit(customtkinter.CTk):
         self.content = customtkinter.CTkFrame(self)
         self.content.pack(fill="both", expand=True, padx=20, pady=20)
 
-        self.vEMDConverter_btn = customtkinter.CTkButton(self.content,
-                                                         text = "Velox EMD Converter",
-                                                         command = self.open_vEMDConverter)
-        self.vEMDConverter_btn.grid(row=0, column=0,  sticky='nsew', pady=5, padx =5)
+        for row, (label, mod_path, cls_name, hint) in enumerate(MODULES):
+            btn = customtkinter.CTkButton(
+                self.content,
+                text=label,
+                command=lambda m=mod_path, c=cls_name, h=hint: self.open_module(m, c, h))
+            btn.grid(row=row, column=0, sticky='nsew', pady=5, padx=5)
 
         self.content.grid_columnconfigure('all', weight=1) 
         self.content.grid_rowconfigure('all', weight=0)
@@ -52,8 +64,16 @@ class UMICToolkit(customtkinter.CTk):
             customtkinter.set_appearance_mode("light")
             self.theme_switch.configure(text="Light mode")
             
-    def open_vEMDConverter(self):
-        vEMD_window = VeloxEMDConverter(self)
+    def open_module(self, mod_path, cls_name, install_hint=None):
+        try:
+            cls = getattr(importlib.import_module(mod_path), cls_name)
+        except ImportError as e:
+            msg = f"This module could not be loaded:\n{e}"
+            if install_hint:
+                msg += f"\n\nInstall the required package with:\n{install_hint}"
+            messagebox.showerror("Module unavailable", msg, parent=self)
+            return
+        cls(self)
 
 if __name__ == "__main__":
     app = UMICToolkit()

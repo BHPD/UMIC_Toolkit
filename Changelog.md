@@ -7,6 +7,12 @@ Z. Patch
 ### v0.2.0 (future plans)
 UMIC Toolkit with a fully functional VeloxEMDConverter module.
 
+#### Unreleased
+Minor updates:
+1. [NEW]        BIOMERO Converter module: GUI for biomero-converter (Leica, Incucyte, iSyntax, MIRAX, DICOM, .db, (OME-)TIFF, OME-Zarr -> OME-Zarr / OME-TIFF).
+2. [CHANGE]     Modules are registered in main.py and imported only when opened, so a missing optional dependency no longer affects other modules.
+3. [CHANGE]     build.spec bundles biomero-converter and its dependencies when installed in the build environment.
+
 #### v0.1.3 (current)
 Minor updates:
 1. [NEW]        Add multi-conversion for single and mosaic acquisitions where normalization is done globally for the elemental maps.
