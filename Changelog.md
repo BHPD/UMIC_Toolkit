@@ -17,6 +17,9 @@ Minor updates:
 6. [CHANGE]     Python 3.12 or newer is now required; main.py checks this at startup.
 7. [CHANGE]     build.spec no longer contains machine-specific paths.
 8. [NEW]        License notices for HyperSpy, RosettaSciIO and OpenSlide; GPL-3.0 and LGPL-2.1 texts are bundled with the .exe.
+9. [NEW]        pyproject.toml with dependencies, optional extras ([biomero], [build]), Python >= 3.12 and an umic-toolkit command.
+10. [CHANGE]    Version is defined once (main.__version__) and used by the window title, pyproject.toml and build.spec.
+11. [CHANGE]    Removed hooks/ folder: hyperspy submodules are collected in build.spec; the ruamel.yaml hook ships with PyInstaller.
 
 #### v0.1.3 (current)
 Minor updates:

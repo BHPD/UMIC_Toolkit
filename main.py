@@ -1,4 +1,6 @@
 import os, sys, importlib, customtkinter
+
+__version__ = "0.1.3"  # single source of the version (pyproject.toml and build.spec read it)
 from tkinter import messagebox
 
 MIN_PYTHON = (3, 12)
@@ -24,7 +26,7 @@ customtkinter.set_default_color_theme("dark-blue")
 class UMICToolkit(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-        self.title("UMIC Toolkit v0.1.3")
+        self.title(f"UMIC Toolkit v{__version__}")
         self.geometry("320x360")
 
         self.content = customtkinter.CTkFrame(self)
@@ -81,6 +83,9 @@ class UMICToolkit(customtkinter.CTk):
             return
         cls(self)
 
-if __name__ == "__main__":
+def run():
     app = UMICToolkit()
     app.mainloop()
+
+if __name__ == "__main__":
+    run()

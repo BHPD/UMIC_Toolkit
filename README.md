@@ -43,15 +43,16 @@ cd UMIC_Toolkit
 ```
 
 ### Install packages
-Install the required packages using the requirements.txt file.
+Install the toolkit and its dependencies (defined in pyproject.toml), including the optional BIOMERO Converter:
 
+```bash
+pip install -e ".[biomero]"
+```
+Leave out `[biomero]` to install only the EMD Converter. To get exactly the versions that have been tested together (as used for the release builds), install from the pinned requirements instead:
 ```bash
 pip install -r requirements.txt
 ```
-The versions in requirements.txt have been tested together. To build the .exe, also install the build requirements:
-```bash
-pip install -r requirements-build.txt
-```
+To build the .exe, also install the build requirements: `pip install -r requirements-build.txt` (or `pip install -e ".[build]"`).
 
 ### Launch GUI
 Activate the appropriate environment.
@@ -59,6 +60,7 @@ Navigate to the directory where the repository is cloned.
 ```bash
 python main.py
 ```
+or, after `pip install -e .`, simply `umic-toolkit`.
 
 ### (Optional) package the GUI into a .exe for convenience
 Using PyInstaller (no paths need to be changed; installed packages are located automatically):

@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "umic-toolkit"
+dynamic = ["version"]
+description = "GUI toolkit for UMIC microscopy workflows: Velox EMD conversion and BIOMERO image conversion"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "B.H.P. Duinkerken" }]
+# The packaged executable is GPL-3.0 because it bundles HyperSpy/RosettaSciIO
+# (see assets/licenses.txt). The license of the toolkit's own code is still to
+# be set by its authors (no LICENSE file yet).
+dependencies = [
+    "customtkinter>=5.2",
+    "hyperspy>=2.0",
+    "rosettasciio>=0.4",
+    "python-box>=7",
+    "ome-types>=0.5",
+    "tifffile>=2024.1",
+    "numpy>=1.26",
+    "scikit-image>=0.22",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+# BIOMERO Converter module (OME-Zarr / OME-TIFF conversion)
+biomero = ["biomero-converter>=0.2.3"]
+# Building the Windows executable (pyinstaller build.spec)
+build = ["pyinstaller>=6.10"]
+
+[project.urls]
+Repository = "https://github.com/BHPD/UMIC_Toolkit"
+
+[project.scripts]
+umic-toolkit = "main:run"
+
+[tool.setuptools]
+py-modules = ["main"]
+
+[tool.setuptools.packages.find]
+include = ["modules*", "assets*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.txt"]
+
+[tool.setuptools.dynamic]
+version = { attr = "main.__version__" }
