@@ -68,7 +68,7 @@ pyinstaller build.spec --clean
 
 For debugging a build locally (Windows PowerShell), `_testing/build_exe_debug.ps1` builds the .exe in a throwaway environment in %TEMP% (nothing is written to the repository), checks that the files the app loads at runtime are included, and can run the exe in the console so errors stay visible:
 ```powershell
-.\_testinguild_exe_debug.ps1 -Run
+.\_testing\build_exe_debug.ps1 -Run
 ```
 See the top of the script for all options (`-RunOnly`, `-Upgrade`, `-Reinstall`, `-Cleanup`, ...).
 
