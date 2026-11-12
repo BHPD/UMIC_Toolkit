@@ -8,7 +8,7 @@ Extracts elemental maps as .tiff files from .emd files, provides instructions fo
 <p align="center"><img src="screenshots/EMD_Converter.png" alt = "EMD Converter image" width = "450"></p>
 
 ### biomero-converter
-Converts microscopy files to OME-Zarr (v0.4/v0.5/v0.6) or OME-TIFF using <a href=https://github.com/NL-BioImaging/biomero-converter>biomero-converter</a>. Supports Leica (.lif, .lof, .xlef, ...), Incucyte archives (.icarch), iSyntax, MIRAX (.mrxs), DICOM, image .db files, (OME-)TIFF and OME-Zarr. Several files can be queued and converted in one go.
+Converts microscopy files to OME-Zarr (v0.4/v0.5/v0.6) or OME-TIFF using <a href=https://github.com/NL-BioImaging/biomero-converter>biomero-converter</a>. Supports Leica (.lif, .lof, .xlef, ...), Incucyte archives (.icarch), iSyntax, MIRAX (.mrxs), DICOM, image .db files, (OME-)TIFF and OME-Zarr. Several files can be queued and converted in one go. The window is the desktop GUI that ships with biomero-converter (`biomero-converter[gui]`, 0.3.0 or newer), which can also be used on its own on Windows, macOS and Linux (`biomero-converter-gui`).
 
 It is installed with the other requirements (see below). If it is not installed, the EMD Converter still works and the toolkit shows an install hint when the biomero-converter module is opened.
 

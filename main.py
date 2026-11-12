@@ -17,7 +17,7 @@ MODULES = [
     ("Velox EMD Converter", "modules.VeloxEMDConverter.VeloxEMDConverter", "VeloxEMDConverter",
      None),
     ("biomero-converter", "modules.BiomeroConverter.BiomeroConverter", "BiomeroConverter",
-     "pip install biomero-converter"),
+     "pip install \"biomero-converter[gui]\""),
 ]
 
 customtkinter.set_appearance_mode("dark") 

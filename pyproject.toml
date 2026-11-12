@@ -25,7 +25,7 @@ dependencies = [
 
 [project.optional-dependencies]
 # biomero-converter module (OME-Zarr / OME-TIFF conversion)
-biomero_converter = ["biomero-converter>=0.2.5"]  # 0.2.4: PyInstaller hook; 0.2.5: DEFAULT_OUTPUT_FORMAT
+biomero_converter = ["biomero-converter[gui]>=0.3.0"]  # 0.3.0: the GUI this module opens
 # Building the Windows executable (pyinstaller build.spec)
 build = ["pyinstaller>=6.10"]
 
