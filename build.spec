@@ -1,7 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
 
 import os, re, importlib.util
-from PyInstaller.utils.hooks import collect_all, collect_submodules
 
 # Name of the build (folder + exe). CI passes the release tag via UMIC_VERSION;
 # otherwise the version is read from main.py (__version__).
@@ -24,29 +23,10 @@ module_imports = [
     'modules.BiomeroConverter.BiomeroConverter',
 ]
 
-# HyperSpy and RosettaSciIO load submodules dynamically (plugins, IO readers),
-# so include all their submodules. (Previously hooks/hook-hyperspy.py.)
-# python-box is excluded from analysis and shipped as a plain folder (see datas).
-dynamic_imports = (collect_submodules('hyperspy') +
-                   collect_submodules('rsciio'))
-
-# Optional: bundle biomero-converter and its dependencies (data files, native
-# libraries such as OpenSlide, codecs) when it is installed in the build env.
-extra_datas, extra_binaries, extra_hiddenimports = [], [], []
-for pkg in ('biomero_converter', 'openslide', 'openslide_bin', 'imagecodecs',
-            'ome_zarr', 'zarr', 'numcodecs', 'pyisyntax', 'pydicom', 'rocrate', 'liffile'):
-    try:
-        d, b, h = collect_all(pkg)
-    except Exception:
-        continue
-    extra_datas += d
-    extra_binaries += b
-    extra_hiddenimports += h
-
 a = Analysis(
     ['main.py'],
     pathex=[],
-    binaries=extra_binaries,
+    binaries=[],
     datas=[
         ('assets/licenses.txt', 'assets'),
         ('assets/third_party', 'third_party'),
@@ -54,11 +34,11 @@ a = Analysis(
         (package_dir('hyperspy'), 'hyperspy'),
         (package_dir('rsciio'), 'rsciio'),
         (package_dir('box'), 'box'),
-    ] + extra_datas,
+    ],
     hiddenimports=[
         'xsdata_pydantic_basemodel.hooks',
-        'xsdata_pydantic_basemodel.hooks.class_type'] + module_imports + dynamic_imports + extra_hiddenimports,
-    hookspath=[],
+        'xsdata_pydantic_basemodel.hooks.class_type'] + module_imports,
+    hookspath=['hooks'],  # hook-hyperspy.py; biomero-converter (>=0.2.4) ships its own hook
     hooksconfig={},
     runtime_hooks=[],
     excludes=['box'],

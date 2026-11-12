@@ -25,7 +25,7 @@ dependencies = [
 
 [project.optional-dependencies]
 # biomero-converter module (OME-Zarr / OME-TIFF conversion)
-biomero_converter = ["biomero-converter>=0.2.3"]
+biomero_converter = ["biomero-converter>=0.2.4"]  # 0.2.4 ships the PyInstaller hook
 # Building the Windows executable (pyinstaller build.spec)
 build = ["pyinstaller>=6.10"]
 
