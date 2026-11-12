@@ -8,3 +8,4 @@ dist/
 *.pyo
 *.pyd
 others.md
+*.egg-info/
