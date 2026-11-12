@@ -1,0 +1,4 @@
+# Installs the UMIC Toolkit with all modules (including the optional
+# biomero-converter module). Supported version ranges are defined in pyproject.toml; only
+# minimum versions are set, so newer releases are installed automatically.
+-e .[biomero_converter]
