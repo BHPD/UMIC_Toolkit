@@ -27,6 +27,14 @@ OUTPUT_FORMATS = {
     'OME-TIFF': 'ometiff',
 }
 
+# Use biomero-converter's own default output format (biomero-converter >= 0.2.5)
+try:
+    from biomero_converter.parameters import DEFAULT_OUTPUT_FORMAT
+except ImportError:
+    DEFAULT_OUTPUT_FORMAT = 'omezarr05'
+DEFAULT_FORMAT_LABEL = next((label for label, fmt in OUTPUT_FORMATS.items() if fmt == DEFAULT_OUTPUT_FORMAT),
+                            'OME-Zarr v0.5')
+
 INPUT_FILETYPES = [
     ('Supported files', '*.lif *.lof *.lifext *.xlif *.xlcf *.xlef *.icarch *.isyntax *.mrxs '
                         '*.db *.dcm *.dicom *.tif *.tiff *.ome *.xml'),
@@ -126,7 +134,7 @@ class BiomeroConverter(customtkinter.CTkToplevel):
         customtkinter.CTkLabel(options, text='Output format:', anchor='w').grid(
             row=0, column=0, sticky='w', pady=5, padx=5)
         self.format_menu = customtkinter.CTkOptionMenu(options, values=list(OUTPUT_FORMATS))
-        self.format_menu.set('OME-Zarr v0.4')
+        self.format_menu.set(DEFAULT_FORMAT_LABEL)
         self.format_menu.grid(row=0, column=1, sticky='ew', pady=5, padx=5)
 
         customtkinter.CTkLabel(options, text='Incucyte plate ID:', anchor='w').grid(

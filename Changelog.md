@@ -21,7 +21,7 @@ Minor updates:
 10. [CHANGE]    Version is defined once (main.__version__) and used by the window title, pyproject.toml and build.spec.
 11. [CHANGE]    Removed the ruamel.yaml PyInstaller hook (it ships with PyInstaller); hook-hyperspy.py only collects HyperSpy/RosettaSciIO submodules.
 12. [NEW]       The UMIC Toolkit is licensed under GPL-3.0-or-later (LICENSE file).
-13. [CHANGE]    Requires biomero-converter >= 0.2.4, which ships its own PyInstaller hook (bundles the metadata schemas needed for conversion in the .exe).
+13. [CHANGE]    Requires biomero-converter >= 0.2.5: it ships its own PyInstaller hook (bundles the metadata schemas needed for conversion in the .exe), and the GUI uses its default output format (OME-Zarr 0.5).
 14. [NEW]       _testing/build_exe_debug.ps1: local debug build of the .exe (throwaway environment, runtime-file check, run in console).
 
 #### v0.1.3 (current)
