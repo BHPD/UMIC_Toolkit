@@ -16,9 +16,9 @@ from biomero_converter.converter import convert
 
 try:
     from importlib.metadata import version as _pkg_version
-    BIOMERO_VERSION = _pkg_version('biomero-converter')
+    CONVERTER_VERSION = _pkg_version('biomero-converter')
 except Exception:
-    BIOMERO_VERSION = 'unknown'
+    CONVERTER_VERSION = 'unknown'
 
 OUTPUT_FORMATS = {
     'OME-Zarr v0.4': 'omezarr04',
@@ -65,7 +65,7 @@ class BiomeroConverter(customtkinter.CTkToplevel):
         super().__init__(master)
 
         # Standard GUI parameters
-        self.title(f'BIOMERO Converter (biomero-converter {BIOMERO_VERSION})')
+        self.title(f'biomero-converter {CONVERTER_VERSION}')
         self.geometry("960x640")
         self.transient(master)
         self.lift()

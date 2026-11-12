@@ -9,15 +9,15 @@ UMIC Toolkit with a fully functional VeloxEMDConverter module.
 
 #### Unreleased
 Minor updates:
-1. [NEW]        BIOMERO Converter module: GUI for biomero-converter (Leica, Incucyte, iSyntax, MIRAX, DICOM, .db, (OME-)TIFF, OME-Zarr -> OME-Zarr / OME-TIFF).
+1. [NEW]        biomero-converter module: GUI for biomero-converter (Leica, Incucyte, iSyntax, MIRAX, DICOM, .db, (OME-)TIFF, OME-Zarr -> OME-Zarr / OME-TIFF).
 2. [CHANGE]     Modules are registered in main.py and imported only when opened, so a missing optional dependency no longer affects other modules.
 3. [CHANGE]     build.spec bundles biomero-converter and its dependencies when installed in the build environment.
 4. [NEW]        GitHub Actions workflow builds the Windows .exe and attaches it to each published release.
-5. [NEW]        requirements.txt (tested, pinned versions) and requirements-build.txt.
+5. [NEW]        requirements.txt (installs the toolkit from pyproject.toml, minimum versions only) and requirements-build.txt.
 6. [CHANGE]     Python 3.12 or newer is now required; main.py checks this at startup.
 7. [CHANGE]     build.spec no longer contains machine-specific paths.
 8. [NEW]        License notices for HyperSpy, RosettaSciIO and OpenSlide; GPL-3.0 and LGPL-2.1 texts are bundled with the .exe.
-9. [NEW]        pyproject.toml with dependencies, optional extras ([biomero], [build]), Python >= 3.12 and an umic-toolkit command.
+9. [NEW]        pyproject.toml with dependencies, optional extras ([biomero_converter], [build]), Python >= 3.12 and an umic-toolkit command.
 10. [CHANGE]    Version is defined once (main.__version__) and used by the window title, pyproject.toml and build.spec.
 11. [CHANGE]    Removed hooks/ folder: hyperspy submodules are collected in build.spec; the ruamel.yaml hook ships with PyInstaller.
 12. [NEW]       The UMIC Toolkit is licensed under GPL-3.0-or-later (LICENSE file).

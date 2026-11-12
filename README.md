@@ -7,10 +7,10 @@ Common custom Python scripts used for UMIC-related workflows. These workflows ha
 Extracts elemental maps as .tiff files from .emd files, provides instructions for stitching using TrakEM2 and enables converson to .ome.tiff-files.
 <p align="center"><img src="screenshots/EMD_Converter.png" alt = "EMD Converter image" width = "450"></p>
 
-### BIOMERO Converter
+### biomero-converter
 Converts microscopy files to OME-Zarr (v0.4/v0.5/v0.6) or OME-TIFF using <a href=https://github.com/NL-BioImaging/biomero-converter>biomero-converter</a>. Supports Leica (.lif, .lof, .xlef, ...), Incucyte archives (.icarch), iSyntax, MIRAX (.mrxs), DICOM, image .db files, (OME-)TIFF and OME-Zarr. Several files can be queued and converted in one go.
 
-It is installed with the other requirements (see below). If it is not installed, the EMD Converter still works and the toolkit shows an install hint when the BIOMERO Converter is opened.
+It is installed with the other requirements (see below). If it is not installed, the EMD Converter still works and the toolkit shows an install hint when the biomero-converter module is opened.
 
 ## Usage
 The GUI can be launched from the command line or packaged into an .exe. First the appropriate environment will have to be created and the repository has to be cloned.
@@ -43,15 +43,13 @@ cd UMIC_Toolkit
 ```
 
 ### Install packages
-Install the toolkit and its dependencies (defined in pyproject.toml), including the optional BIOMERO Converter:
+Install the toolkit and its dependencies (defined in pyproject.toml), including the optional biomero-converter module:
 
 ```bash
-pip install -e ".[biomero]"
+pip install -e ".[biomero_converter]"
 ```
-Leave out `[biomero]` to install only the EMD Converter. To get exactly the versions that have been tested together (as used for the release builds), install from the pinned requirements instead:
-```bash
-pip install -r requirements.txt
-```
+Leave out `[biomero_converter]` to install only the EMD Converter. `pip install -r requirements.txt` does the same as the command above. Only minimum versions are specified (in pyproject.toml), so the latest compatible versions of all packages are installed.
+
 To build the .exe, also install the build requirements: `pip install -r requirements-build.txt` (or `pip install -e ".[build]"`).
 
 ### Launch GUI

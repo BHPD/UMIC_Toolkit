@@ -96,7 +96,7 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-/// biomero-converter (optional, BIOMERO Converter module)
+/// biomero-converter (optional, biomero-converter module)
 
 Apache License, Version 2.0
 
@@ -147,7 +147,7 @@ Software Foundation, either version 3 of the License, or (at your option)
 any later version. It is distributed WITHOUT ANY WARRANTY; see the GNU
 General Public License (third_party/GPL-3.0.txt) for more details.
 
-/// OpenSlide (openslide-python, openslide-bin; optional, BIOMERO Converter module)
+/// OpenSlide (openslide-python, openslide-bin; optional, biomero-converter module)
 
 GNU Lesser General Public License v2.1 (LGPL-2.1-only), with bundled
 libraries under various permissive licenses (BSD, MIT, Zlib, libpng, libtiff, IJG, ...)

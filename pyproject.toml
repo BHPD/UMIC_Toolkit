@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "umic-toolkit"
 dynamic = ["version"]
-description = "GUI toolkit for UMIC microscopy workflows: Velox EMD conversion and BIOMERO image conversion"
+description = "GUI toolkit for UMIC microscopy workflows: Velox EMD conversion and biomero-converter image conversion"
 readme = "README.md"
 requires-python = ">=3.12"
 authors = [{ name = "B.H.P. Duinkerken" }]
@@ -24,8 +24,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# BIOMERO Converter module (OME-Zarr / OME-TIFF conversion)
-biomero = ["biomero-converter>=0.2.3"]
+# biomero-converter module (OME-Zarr / OME-TIFF conversion)
+biomero_converter = ["biomero-converter>=0.2.3"]
 # Building the Windows executable (pyinstaller build.spec)
 build = ["pyinstaller>=6.10"]
 

@@ -16,7 +16,7 @@ from assets.load_licenses import license_window
 MODULES = [
     ("Velox EMD Converter", "modules.VeloxEMDConverter.VeloxEMDConverter", "VeloxEMDConverter",
      None),
-    ("BIOMERO Converter", "modules.BiomeroConverter.BiomeroConverter", "BiomeroConverter",
+    ("biomero-converter", "modules.BiomeroConverter.BiomeroConverter", "BiomeroConverter",
      "pip install biomero-converter"),
 ]
 
